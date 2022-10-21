@@ -163,10 +163,10 @@ class BilleteraPersonal
 	    curl_close($session);
 
 	    if($response === false){
-			throw new Exception("No se pudo enviar la petición {$action}. {$error}");
-		}else{
-			return $response;
-		}
+	    	throw new Exception("No se pudo enviar la petición {$action}. {$error}");
+	    }else{
+	    	return $response;
+	    }
 	}
 
 	/**
@@ -174,20 +174,20 @@ class BilleteraPersonal
 	 * @return Exception
 	 */
 	private static function checkErrors($result)
-    {
-        $code = $result->codigo ?? $result->codigoTransaccion;
-        if($code !== 0){
-            $message = $result->mensaje ?? $result->mensajeTransaccion ?? $result->estado;
-            throw new \Exception($message);
-        }
-    }
+	{
+		$code = $result->codigo ?? $result->codigoTransaccion;
+		if($code !== 0){
+			$message = $result->mensaje ?? $result->mensajeTransaccion ?? $result->estado;
+			throw new \Exception($message);
+		}
+	}
 
     /**
      * @param  $response
      * @return mixed
      */
     private static function responseJson($response)
-	{
-	    return @json_decode($response);
-	}
+    {
+    	return @json_decode($response);
+    }
 }
